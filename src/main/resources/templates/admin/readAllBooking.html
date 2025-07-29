@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin - Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      padding: 40px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: #007bff;
+  color: white;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+
+@media screen and (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background: #fff;
+  }
+
+  td {
+    text-align: right;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    font-weight: bold;
+    text-align: left;
+  }
+}
+    .back-button {
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+    }
+    .back-button a {
+      text-decoration: none;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border-radius: 5px;
+    }
+    .back-button a:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+    <h2>Booking Details</h2>
+  <table>
+   <thead>
+     <tr>
+       <th>ID</th>
+       <th>NAME</th>
+       <th>SOURCE</th>
+       <th>DESTINATION</th>
+       <th>EMAIL</th>
+       <th>TIME</th>
+       <th>DATE</th>
+       <th>COMFORT</th>
+       <th>ADULT</th>
+       <th>CHILDREN</th>
+       <th>MESSAGE</th>
+       <th>ACTION</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr th:each="booking : ${listofbooking}">
+      <td th:text="${booking.id}"></td>
+      <td th:text="${booking.name}"></td>
+      <td th:text="${booking.source}"></td>
+      <td th:text="${booking.destination}"></td>
+      <td th:text="${booking.email}"></td>
+      <td th:text="${booking.time}"></td>
+      <td th:text="${booking.date}"></td>
+      <td th:text="${booking.comfort}"></td>
+      <td th:text="${booking.adult}"></td>   
+      <td th:text="${booking.children}"></td> 
+      <td th:text="${booking.message}"></td> 
+      <td>
+        <a th:href="@{ deleteBooking/{id} (id=${booking.id})  }">DELETE</a>
+      </td>
+     </tr>
+   </tbody>
+  </table>
+    
+      <h3 th:text="${message}"></h3>
+  
+  <div class="back-button">
+    <a href="dashboard">Back to Dashboard</a>
+  </div>
+</body>
+</html>

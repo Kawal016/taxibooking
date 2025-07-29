@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+ <title>Admin - Contact Messages</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      padding: 40px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    table {
+      width: 90%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .back-button {
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+    }
+    .back-button a {
+      text-decoration: none;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border-radius: 5px;
+    }
+    .back-button a:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+ <h2>Contact Messages</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Message</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+     <tbody>
+        <tr th:each="  contact :${listofcontact}    ">
+         <td th:text="${contact.id}">
+         <td th:text="${contact.name}">
+         <td th:text="${contact.email}">
+         <td th:text="${contact.phone}">
+         <td th:text="${contact.message}">
+         <td>
+           <a th:href="@{deleteContact/{id} (id=${contact.id}) }">DELETE</a>
+         </td>
+        </tr>
+     </tbody>  
+  </table>
+  
+  <h3 th:text="${message}"></h3>
+  
+  <div class="back-button">
+    <a href="dashboard">Back to Dashboard</a>
+  </div>
+</body>
+</html>
